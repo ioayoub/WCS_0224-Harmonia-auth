@@ -1,12 +1,9 @@
 create table user (
   id int unsigned primary key auto_increment not null,
   email varchar(255) not null unique,
-  password varchar(255) not null
+  firstname VARCHAR(150) NOT NULL,
+  lastname VARCHAR(150) NOT NULL,
+  password varchar(255) not null,
+  role VARCHAR(255) NOT NULL DEFAULT "user"
 );
 
-create table item (
-  id int unsigned primary key auto_increment not null,
-  title varchar(255) not null,
-  user_id int unsigned not null,
-  foreign key(user_id) references user(id)
-);
