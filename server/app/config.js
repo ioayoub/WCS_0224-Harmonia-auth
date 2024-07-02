@@ -4,8 +4,10 @@ const express = require("express");
 
 const app = express();
 
-// Configure it
+const cookieParser = require("cookie-parser");
 
+// Configure it
+app.use(cookieParser());
 /* ************************************************************************* */
 
 // CORS Handling: Why is the current code commented out and do I need to define specific allowed origins for my project?
@@ -31,9 +33,9 @@ app.use(
   cors({
     origin: [
       process.env.CLIENT_URL, // keep this one, after checking the value in `server/.env`
-      "http://mysite.com",
-      "http://another-domain.com",
     ],
+
+    credentials: true, // Activer les credentials ici
   })
 );
 
@@ -71,7 +73,6 @@ app.use(express.json());
 // Then, require the module and use it as middleware in your Express application:
 
 // const cookieParser = require("cookie-parser");
-// app.use(cookieParser());
 
 // Once `cookie-parser` is set up, you can read and set cookies in your routes.
 // For example, to set a cookie named "username" with the value "john":

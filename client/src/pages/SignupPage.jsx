@@ -15,8 +15,6 @@ export default function SignupPage() {
         "http://localhost:3310/api/users",
         data
       );
-
-      console.log(response.data.message);
     } catch (e) {
       console.error(e);
     }

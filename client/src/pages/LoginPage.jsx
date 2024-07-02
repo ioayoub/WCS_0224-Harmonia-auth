@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { useOutletContext } from "react-router-dom";
 
 export default function LoginPage() {
+  const { setCurrentUser } = useOutletContext();
+
   const {
     register,
     handleSubmit,
@@ -11,15 +14,17 @@ export default function LoginPage() {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:3310/api/auth/login",
-        data
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        data,
+        {
+          withCredentials: true,
+        }
       );
 
-      console.log(response.data.message);
+      setCurrentUser(response.data.user);
     } catch (e) {
       console.error(e);
     }
-    console.log(data);
   };
 
   return (

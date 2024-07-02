@@ -1,6 +1,8 @@
 const jwt = require("jsonwebtoken");
 
-const encodeJWT = async (payload) =>
+const encodeJWT = (payload) =>
   jwt.sign(payload, process.env.APP_SECRET, { expiresIn: "24h" });
 
-module.exports = { encodeJWT };
+const decodeJWT = (token) => jwt.verify(token, process.env.APP_SECRET);
+
+module.exports = { encodeJWT, decodeJWT };

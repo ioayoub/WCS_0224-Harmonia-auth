@@ -1,7 +1,22 @@
+import { Link, Outlet } from "react-router-dom";
 import "./App.css";
+import { useState } from "react";
 
 function App() {
-  return <h1 className="text-red-500">Hello</h1>;
+  const [currentUser, setCurrentUser] = useState(null);
+
+  return (
+    <main>
+      <nav>
+        <Link to="/signup">Signup</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/logout">logout</Link>
+        <Link to="/admin">Admin</Link>
+      </nav>
+      <p>Votre nom est : {currentUser?.firstname}</p>
+      <Outlet context={{ currentUser, setCurrentUser }} />
+    </main>
+  );
 }
 
 export default App;
