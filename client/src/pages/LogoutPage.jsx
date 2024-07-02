@@ -7,7 +7,7 @@ export default function LogoutPage() {
   const handleLogout = async () => {
     try {
       await axios.get("http://localhost:3310/api/auth/logout", {
-        withCredentials: true,
+        withCredentials: true, // enable credentials here to allow express to read cookies
       });
 
       setCurrentUser(null);

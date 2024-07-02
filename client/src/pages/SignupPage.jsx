@@ -11,10 +11,7 @@ export default function SignupPage() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3310/api/users",
-        data
-      );
+      await axios.post("http://localhost:3310/api/users", data);
     } catch (e) {
       console.error(e);
     }

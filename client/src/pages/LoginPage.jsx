@@ -8,7 +8,7 @@ export default function LoginPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }, // You can use the errors to display on each field
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -17,7 +17,7 @@ export default function LoginPage() {
         `${import.meta.env.VITE_API_URL}/api/auth/login`,
         data,
         {
-          withCredentials: true,
+          withCredentials: true, // enable credentials here to allow express to read cookies
         }
       );
 

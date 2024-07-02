@@ -10,7 +10,7 @@ export default function AdminPage() {
     try {
       // check if token is valid, if not generate an axios error
       axios.get(`${import.meta.env.VITE_API_URL}/api/auth/checkauth`, {
-        withCredentials: true, // Enable sending cookies with the request
+        withCredentials: true, // enable credentials here to allow express to read cookies
       });
     } catch (e) {
       console.error(e);
