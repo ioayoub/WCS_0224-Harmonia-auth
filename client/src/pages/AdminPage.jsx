@@ -1,10 +1,12 @@
 import axios from "axios";
 
 import { useEffect } from "react";
-import { Link, useOutletContext } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 
 export default function AdminPage() {
   const { currentUser } = useOutletContext();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     try {
@@ -17,11 +19,13 @@ export default function AdminPage() {
     }
   }, []);
 
-  return currentUser && currentUser.role === "admin" ? (
+  // if user is not an admin, redirect to page "/"
+  if (currentUser && currentUser.role !== "admin") {
+    return navigate("/");
+  }
+
+  return (
     // if user role is valid allow user to see this page
     <h1>Admin page</h1>
-  ) : (
-    // You can also redirect user to another route here
-    <Link to="/login">Login</Link>
   );
 }

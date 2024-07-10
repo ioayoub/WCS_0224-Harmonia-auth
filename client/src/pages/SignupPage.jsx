@@ -6,7 +6,7 @@ export default function SignupPage() {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors }, // You can use the errors to display on each field
   } = useForm();
 
   const onSubmit = async (data) => {

@@ -5,6 +5,8 @@ import { useState } from "react";
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
+  console.log(currentUser);
+
   return (
     <main>
       <nav>
