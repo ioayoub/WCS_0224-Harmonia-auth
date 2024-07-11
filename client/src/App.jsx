@@ -1,21 +1,13 @@
 import { Link, Outlet } from "react-router-dom";
 import "./App.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import fetchAuth from "./lib/auth";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    try {
-      axios
-        .get(`${import.meta.env.VITE_API_URL}/api/auth/checkauth`, {
-          withCredentials: true,
-        })
-        .then((response) => setCurrentUser(response.data.user));
-    } catch (e) {
-      setCurrentUser(null);
-    }
+    fetchAuth().then((response) => setCurrentUser(response));
   }, []);
 
   return (

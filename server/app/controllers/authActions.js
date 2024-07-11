@@ -25,7 +25,7 @@ const login = async (req, res) => {
 
   delete user.password;
 
-  const token = encodeJWT(user);
+  const token = await encodeJWT(user);
   return res
     .status(200)
     .cookie("auth_token", token, {
@@ -43,7 +43,7 @@ const logout = (req, res) => {
   res.clearCookie("auth_token").sendStatus(200);
 };
 
-const checkAuth = (req, res) => {
+const checkAuth = async (req, res) => {
   const token = req.cookies?.auth_token;
 
   // if there is no token return an error
@@ -53,7 +53,7 @@ const checkAuth = (req, res) => {
 
   try {
     // Verify if token is valid and haven't be corrupted
-    const validToken = decodeJWT(token);
+    const validToken = await decodeJWT(token);
 
     // Refresh the token if everything is ok
     return res
