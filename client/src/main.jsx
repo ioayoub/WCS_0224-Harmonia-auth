@@ -8,6 +8,7 @@ import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
 import AdminPage from "./pages/AdminPage";
+import AdminPage2 from "./pages/AdminPage2";
 
 const router = createBrowserRouter([
   {
@@ -34,8 +35,13 @@ const router = createBrowserRouter([
         element: <LogoutPage />,
       },
       {
-        path: "/admin",
         element: <AdminPage />,
+        children: [
+          {
+            path: "/",
+            element: <AdminPage2 />,
+          },
+        ],
       },
     ],
   },
